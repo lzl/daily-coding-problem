@@ -1,3 +1,5 @@
+// https://chat.openai.com/share/a222bc78-9256-48de-a7d5-26b84accf0f7
+
 class Node {
   constructor(value) {
       this.value = value;
