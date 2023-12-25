@@ -37,4 +37,46 @@ console.log("3:", arr.next());
 console.log("4:", arr.next());
 console.log("5:", arr.next());
 console.log("6:", arr.next());
-console.log("7:", arr.next());
+// console.log("7:", arr.next());
+
+class TwoDIterator {
+  constructor(arr) {
+    this.arr = arr;
+    this.outerIndex = 0;
+    this.innerIndex = 0;
+    this.advanceToNext();
+  }
+
+  advanceToNext() {
+    // Advance to the next non-empty array
+    while (
+      this.outerIndex < this.arr.length &&
+      this.innerIndex === this.arr[this.outerIndex].length
+    ) {
+      this.outerIndex++;
+      this.innerIndex = 0;
+    }
+  }
+
+  has_next() {
+    // Check if there is a next element in the array of arrays
+    return this.outerIndex < this.arr.length;
+  }
+
+  next() {
+    if (!this.has_next()) {
+      throw new Error("No more elements");
+    }
+
+    const nextElement = this.arr[this.outerIndex][this.innerIndex];
+    this.innerIndex++;
+    this.advanceToNext();
+    return nextElement;
+  }
+}
+
+// Example usage
+const it = new TwoDIterator(sample);
+while (it.has_next()) {
+  console.log(it.next());
+}
