@@ -56,10 +56,13 @@ function linearSieveOfEratosthenes(N) {
   isPrime[0] = isPrime[1] = false;
 
   for (let i = 2; i < N; i++) {
+    console.log('i:', i)
     if (isPrime[i]) {
+      console.log('primes.push:', i)
       primes.push(i);
     }
     for (let j = 0; j < primes.length && i * primes[j] < N; j++) {
+      console.log('j:', j, 'i:', i, 'primes[j]:', primes[j], 'i * primes[j]:', i * primes[j])
       isPrime[i * primes[j]] = false;
       if (i % primes[j] === 0) break;
     }
