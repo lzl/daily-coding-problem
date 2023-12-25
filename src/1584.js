@@ -1,3 +1,5 @@
+// https://chat.openai.com/share/dcfc3b09-276c-4065-bddd-1345db0b8a09
+
 const sample = [[1, 2], [3], [], [4, 5, 6]];
 
 class Solution {
