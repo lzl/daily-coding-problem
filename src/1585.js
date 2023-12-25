@@ -1,3 +1,5 @@
+// https://chat.openai.com/share/d5a9415e-a3a8-45bc-a928-8ea3d6bc69b9
+
 function solution(num) {
   const allNum = Array.from({ length: num - 1 }, (_, i) => i + 2); // 0 and 1 are not prime numbers
 
