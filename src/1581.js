@@ -41,3 +41,33 @@ console.log(
     { topLeft: [0, 5], dimensions: [4, 3] }
   )
 );
+console.log(
+  getIntersectionArea(
+    { topLeft: [2, 6], dimensions: [4, 4] },
+    { topLeft: [4, 4], dimensions: [5, 5] }
+  )
+);
+console.log(
+  getIntersectionArea(
+    { topLeft: [0, 10], dimensions: [2, 2] },
+    { topLeft: [5, 5], dimensions: [3, 3] }
+  )
+);
+console.log(
+  getIntersectionArea(
+    { topLeft: [3, 8], dimensions: [6, 6] },
+    { topLeft: [4, 7], dimensions: [2, 2] }
+  )
+);
+console.log(
+  getIntersectionArea(
+    { topLeft: [1, 1], dimensions: [3, 3] },
+    { topLeft: [4, 1], dimensions: [3, 3] }
+  )
+);
+console.log(
+  getIntersectionArea(
+    { topLeft: [0, 0], dimensions: [2, 2] },
+    { topLeft: [2, 2], dimensions: [2, 2] }
+  )
+);
