@@ -71,3 +71,42 @@ console.log(
     { topLeft: [2, 2], dimensions: [2, 2] }
   )
 );
+
+function calculateIntersectionArea(rect1, rect2) {
+  // Extracting information from the rectangles
+  const [x1, y1] = rect1.top_left;
+  const [w1, h1] = rect1.dimensions;
+  const [x2, y2] = rect2.top_left;
+  const [w2, h2] = rect2.dimensions;
+
+  // Calculating the coordinates of the intersection rectangle
+  const left = Math.max(x1, x2);
+  const right = Math.min(x1 + w1, x2 + w2);
+  const top = Math.min(y1, y2);
+  const bottom = Math.max(y1 - h1, y2 - h2);
+
+  // Checking if there is no intersection
+  if (left >= right || top <= bottom) {
+    return 0;
+  }
+
+  // Calculating the area of intersection
+  const width = right - left;
+  const height = top - bottom;
+  return width * height;
+}
+
+// Example rectangles
+const rectangle1 = {
+  top_left: [1, 4],
+  dimensions: [3, 3], // width, height
+};
+
+const rectangle2 = {
+  top_left: [0, 5],
+  dimensions: [4, 3], // width, height
+};
+
+// Calculate the area of their intersection
+const intersectionArea = calculateIntersectionArea(rectangle1, rectangle2);
+console.log("Intersection Area:", intersectionArea);
