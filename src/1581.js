@@ -1,3 +1,5 @@
+// https://chat.openai.com/share/269eb334-d396-4d8c-abe1-fe73594c14f8
+
 function getRec(topLeft, dimensions) {
   const topRight = [topLeft[0] + dimensions[0], topLeft[1] + dimensions[1]];
   const bottomRight = [topLeft[0] + dimensions[0], topLeft[1] - dimensions[1]];
