@@ -1,3 +1,5 @@
+// https://chat.openai.com/share/6ee829ac-f2a9-420c-b398-3823d94c4f86
+
 const stepArr = [6, 2, 4, 0, 5, 1, 1, 4, 2, 9];
 
 function calculateMinJumps(arr) {
