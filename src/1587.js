@@ -29,7 +29,7 @@ function calculateMinJumps(arr) {
   return jump;
 }
 
-console.log(calculateMinJumps(stepArr));
+console.log(calculateMinJumps(stepArr)); // time: O(n^2), space: O(1)
 
 function minJumps(arr) {
   let jumps = 0,
@@ -55,4 +55,4 @@ function minJumps(arr) {
 
 // Test the function with the provided array
 const testArray = [6, 2, 4, 0, 5, 1, 1, 4, 2, 9];
-console.log(minJumps(testArray)); // Should return 2
+console.log(minJumps(testArray)); // time: O(n), space: O(1)
