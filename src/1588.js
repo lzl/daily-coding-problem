@@ -78,7 +78,13 @@ function dfs(arr, i = 0, j = 0, memo) {
     return 1;
   }
 
-  if (i > arr.length - 1 || j > arr[i].length - 1 || arr[i][j] === 1) {
+  if (
+    i < 0 ||
+    j < 0 ||
+    i > arr.length - 1 ||
+    j > arr[i].length - 1 ||
+    arr[i][j] === 1
+  ) {
     return 0;
   }
 
