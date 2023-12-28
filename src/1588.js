@@ -114,7 +114,11 @@ console.log(countPaths(grid)); // Output should be 2
 
 // console.log(method1(example));
 
-function dfs(arr, i = 0, j = 0) {
+function dfs(arr, i = 0, j = 0, memo) {
+  if (!memo) {
+    memo = Array.from(Array(arr.length), () => Array(arr[0].length).fill(-1));
+  }
+
   if (i === arr.length - 1 && j === arr[i].length - 1) {
     return 1;
   }
@@ -123,7 +127,12 @@ function dfs(arr, i = 0, j = 0) {
     return 0;
   }
 
-  return dfs(arr, i + 1, j) + dfs(arr, i, j + 1);
+  if (memo[i][j] !== -1) {
+    return memo[i][j];
+  }
+
+  memo[i][j] = dfs(arr, i + 1, j, memo) + dfs(arr, i, j + 1, memo);
+  return memo[i][j];
 }
 
 console.log(dfs(grid));
