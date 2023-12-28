@@ -113,3 +113,48 @@ console.log(countPaths(grid)); // Output should be 2
 // }
 
 // console.log(method1(example));
+
+function dfs(arr, i = 0, j = 0) {
+  if (i === arr.length - 1 && j === arr[i].length - 1) {
+    return 1;
+  }
+
+  if (i > arr.length - 1 || j > arr[i].length - 1 || arr[i][j] === 1) {
+    return 0;
+  }
+
+  return dfs(arr, i + 1, j) + dfs(arr, i, j + 1);
+}
+
+console.log(dfs(grid));
+
+function countPathsDFS(grid) {
+  const N = grid.length;
+  const M = grid[0].length;
+  let memo = Array.from(Array(N), () => Array(M).fill(-1));
+
+  function dfs(x, y) {
+    // If out of bounds or at a wall, return 0
+    if (x < 0 || y < 0 || x >= N || y >= M || grid[x][y] === 1) {
+      return 0;
+    }
+
+    // If at the bottom-right corner, return 1
+    if (x === N - 1 && y === M - 1) {
+      return 1;
+    }
+
+    // If this subproblem is already solved, return the stored value
+    if (memo[x][y] !== -1) {
+      return memo[x][y];
+    }
+
+    // Recursive calls for right and down paths
+    memo[x][y] = dfs(x + 1, y) + dfs(x, y + 1);
+    return memo[x][y];
+  }
+
+  return dfs(0, 0);
+}
+
+console.log(countPathsDFS(grid)); // Output should be 2
