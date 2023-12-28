@@ -1,3 +1,41 @@
+function countPaths(grid) {
+  const N = grid.length;
+  const M = grid[0].length;
+  let dp = Array.from(Array(N), () => Array(M).fill(0));
+
+  // Base case: start point
+  dp[0][0] = 1;
+
+  // Filling the first row and first column
+  for (let i = 1; i < N; i++) {
+    dp[i][0] = grid[i][0] == 0 && dp[i - 1][0] == 1 ? 1 : 0;
+  }
+  for (let j = 1; j < M; j++) {
+    dp[0][j] = grid[0][j] == 0 && dp[0][j - 1] == 1 ? 1 : 0;
+  }
+
+  // Filling the rest of the dp array
+  for (let i = 1; i < N; i++) {
+    for (let j = 1; j < M; j++) {
+      if (grid[i][j] == 0) {
+        dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+      }
+    }
+  }
+  console.log("dp:", dp);
+  // Return the number of ways to reach the bottom-right corner
+  return dp[N - 1][M - 1];
+}
+
+// Test the function with the provided example
+const grid = [
+  [0, 0, 1],
+  [0, 0, 1],
+  [1, 0, 0],
+];
+
+console.log(countPaths(grid)); // Output should be 2
+
 const example = [
   [0, 0, 1],
   [0, 0, 1],
@@ -73,4 +111,4 @@ function method1(matrix) {
   return dp;
 }
 
-console.log(method1(example));
+// console.log(method1(example));
