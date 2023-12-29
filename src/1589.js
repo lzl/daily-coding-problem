@@ -31,3 +31,29 @@ function minRemainingNum(arr) {
 }
 
 console.log(minRemainingNum(colors));
+
+function minimizeQuxes(quxes) {
+  let countR = quxes.filter((color) => color === "R").length;
+  let countG = quxes.filter((color) => color === "G").length;
+  let countB = quxes.filter((color) => color === "B").length;
+
+  // Case where at least two counts are zero
+  if (
+    (countR === 0 && countG === 0) ||
+    (countG === 0 && countB === 0) ||
+    (countR === 0 && countB === 0)
+  ) {
+    return countR + countG + countB;
+  }
+
+  // If the total count is odd, one Qux will always remain after transformations
+  if ((countR + countG + countB) % 2 === 1) {
+    return 1;
+  }
+
+  // If the total count is even, two Quxes of the same color will remain
+  return 2;
+}
+
+// Test the function
+console.log(minimizeQuxes(colors)); // Expected output: 1
