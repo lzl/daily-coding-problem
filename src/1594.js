@@ -1,3 +1,5 @@
+// https://chat.openai.com/share/ddc07a73-3641-4740-be08-b7e5f145b857
+
 function isOverlapping(a, b) {
   const at = a.top_left[1];
   const ar = a.top_left[0] + a.dimensions[0];
