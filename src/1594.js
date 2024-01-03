@@ -28,3 +28,42 @@ const r3 = {
 console.log(isOverlapping(r1, r2));
 console.log(isOverlapping(r1, r3));
 console.log(isOverlapping(r2, r3));
+
+function Rectangle(topLeft, dimensions) {
+  this.x1 = topLeft[0];
+  this.y1 = topLeft[1];
+  this.x2 = this.x1 + dimensions[0];
+  this.y2 = this.y1 - dimensions[1];
+}
+
+function doOverlap(rectA, rectB) {
+  // Check if one rectangle is to the left of the other
+  if (rectA.x1 >= rectB.x2 || rectB.x1 >= rectA.x2) {
+    return false;
+  }
+  // Check if one rectangle is above the other
+  if (rectA.y1 <= rectB.y2 || rectB.y1 <= rectA.y2) {
+    return false;
+  }
+  return true;
+}
+
+function checkRectanglesOverlap(rectangles) {
+  for (let i = 0; i < rectangles.length; i++) {
+    for (let j = i + 1; j < rectangles.length; j++) {
+      if (doOverlap(rectangles[i], rectangles[j])) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+// Example rectangles
+const rectangles = [
+  new Rectangle([1, 4], [3, 3]),
+  new Rectangle([-1, 3], [2, 1]),
+  new Rectangle([0, 5], [4, 3]),
+];
+
+console.log(checkRectanglesOverlap(rectangles)); // Output: true
