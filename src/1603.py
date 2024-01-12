@@ -1,3 +1,5 @@
+# https://chat.openai.com/share/bb7941aa-92fd-4a76-a0c3-b7c86332da14
+
 N = 5
 
 
