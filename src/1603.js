@@ -1,3 +1,29 @@
+let N = 5;
+
+function countSetBitsNaive(N) {
+  let totalSetBits = 0;
+
+  for (let number = 1; number <= N; number++) {
+    totalSetBits += countBitsInNumber(number);
+  }
+
+  return totalSetBits;
+}
+
+function countBitsInNumber(number) {
+  let count = 0;
+  while (number) {
+    count += number & 1; // Increment count if the last bit is set
+    number >>= 1; // Shift right to check the next bit
+  }
+  return count;
+}
+
+console.log(
+  `Total set bits from 1 to ${N} (Naive Approach):`,
+  countSetBitsNaive(N)
+);
+
 function countSetBits(N) {
   let totalSetBits = 0;
 
@@ -17,6 +43,4 @@ function countSetBits(N) {
   return totalSetBits;
 }
 
-// Example usage
-let N = 5;
 console.log(`Total set bits from 1 to ${N}:`, countSetBits(N));
