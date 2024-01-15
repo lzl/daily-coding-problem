@@ -1,3 +1,5 @@
+# https://chat.openai.com/share/334c53ee-83ef-4d2d-9471-5448eeda39e9
+
 def count_ways(N):
     if N == 0:
         return 0
