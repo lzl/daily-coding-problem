@@ -1,3 +1,5 @@
+// https://chat.openai.com/share/1e8aa9fb-9f69-4420-aa1b-7fee44168cd0
+
 function isOneToOneMapping(s1, s2) {
   if (s1.length !== s2.length) {
     return false;
