@@ -1,3 +1,5 @@
+// https://chat.openai.com/share/d1193fa8-8857-47d9-9d76-b6e393c67b8d
+
 function countMaxHeaps(n) {
   // Function to compute binomial coefficients
   function binomialCoeff(n, k) {
