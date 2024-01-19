@@ -3,13 +3,15 @@ function Tree(value) {
   this.left = this.right = null;
 }
 
-const node = new Tree(5);
+const node = new Tree(7);
 node.left = new Tree(3);
-node.left.left = new Tree(2);
-node.left.right = new Tree(4);
-node.right = new Tree(7);
-node.right.left = new Tree(6);
-node.right.right = new Tree(8);
+node.left.left = new Tree(1);
+node.left.right = new Tree(5);
+node.right = new Tree(10);
+node.right.left = new Tree(9);
+node.right.right = new Tree(12);
+
+const target = 6;
 
 function findNodeInBST(node, target) {
   if (!node) return null;
@@ -43,4 +45,4 @@ function findInBST(node, target) {
   return { floor, ceiling };
 }
 
-console.log(findInBST(node, 3));
+console.log(findInBST(node, target));
