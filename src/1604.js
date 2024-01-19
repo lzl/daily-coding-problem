@@ -1,3 +1,5 @@
+// https://chat.openai.com/share/8b59f924-31c3-4988-a8d1-a138943fd03c
+
 function TreeNode(value) {
   this.value = value;
   this.left = this.right = null;
