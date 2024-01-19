@@ -1,15 +1,15 @@
-function Tree(value) {
+function TreeNode(value) {
   this.value = value;
   this.left = this.right = null;
 }
 
-const node = new Tree(7);
-node.left = new Tree(3);
-node.left.left = new Tree(1);
-node.left.right = new Tree(5);
-node.right = new Tree(10);
-node.right.left = new Tree(9);
-node.right.right = new Tree(12);
+const root = new TreeNode(7);
+root.left = new TreeNode(3);
+root.left.left = new TreeNode(1);
+root.left.right = new TreeNode(5);
+root.right = new TreeNode(10);
+root.right.left = new TreeNode(9);
+root.right.right = new TreeNode(12);
 
 const target = 6;
 
@@ -36,18 +36,6 @@ function findCeilingInBST(node) {
 }
 
 function findInBST(node, target) {
-  const targetNode = findNodeInBST(node, target);
-  if (!targetNode) return null;
-
-  const floor = findFloorInBST(targetNode);
-  const ceiling = findCeilingInBST(targetNode);
-
-  return { floor, ceiling };
-}
-
-console.log(findInBST(node, target));
-
-function findInBST_2(node, target) {
   const root = node.value;
   if (target < root) {
     const floor = findFloorInBST(node);
@@ -62,4 +50,29 @@ function findInBST_2(node, target) {
   }
 }
 
-console.log(findInBST_2(node, target));
+console.log(findInBST(root, target));
+
+function findFloorAndCeiling(root, integer) {
+  let floor = null;
+  let ceiling = null;
+  let currentNode = root;
+
+  while (currentNode !== null) {
+    if (currentNode.value === integer) {
+      return { floor: integer, ceiling: integer };
+    }
+
+    if (currentNode.value < integer) {
+      floor = currentNode.value;
+      currentNode = currentNode.right;
+    } else {
+      ceiling = currentNode.value;
+      currentNode = currentNode.left;
+    }
+  }
+
+  return { floor, ceiling };
+}
+
+const result = findFloorAndCeiling(root, target);
+console.log(result); // Should show { floor: 5, ceiling: 7 }
