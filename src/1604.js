@@ -46,3 +46,20 @@ function findInBST(node, target) {
 }
 
 console.log(findInBST(node, target));
+
+function findInBST_2(node, target) {
+  const root = node.value;
+  if (target < root) {
+    const floor = findFloorInBST(node);
+    const ceiling = root;
+    return { floor, ceiling };
+  } else if (target > root) {
+    const floor = root;
+    const ceiling = findCeilingInBST(node);
+    return { floor, ceiling };
+  } else {
+    return { floor: root, ceiling: root };
+  }
+}
+
+console.log(findInBST_2(node, target));
