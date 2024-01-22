@@ -1,28 +1,41 @@
-// https://chat.openai.com/share/6755abad-5289-42bd-8415-a07a9ba0fe10
+function smallestLexString(str, k) {
+  let present = new Map();
+  let bigCh;
+  let maxIndex = 0;
 
-function findLexicographicallySmallestString(inputString, k) {
-  if (k > 1) {
-    // If k > 1, return the sorted string
-    return inputString.split("").sort().join("");
-  } else {
-    // For k = 1, find the lexicographically smallest string
-    let smallestString = inputString;
-
-    for (let i = 0; i < inputString.length; i++) {
-      // Rotate the string: move the first character to the end
-      inputString = inputString.substr(1) + inputString[0];
-
-      // Update smallestString if the current rotation is smaller
-      if (inputString < smallestString) {
-        smallestString = inputString;
-      }
-    }
-
-    return smallestString;
+  if (k <= 0) {
+      return str;
+  } 
+  else if (k >= str.length) {
+      let strChars = str.split('');
+      strChars.sort();
+      return strChars.join('');
   }
+
+  while (!present.has(str)) {
+      bigCh = 'A';
+
+      for (let i = 0; i < k; i++) {
+          if (bigCh < str.charAt(i)) {
+              maxIndex = i;
+              bigCh = str.charAt(i);
+          }
+      }
+
+      present.set(str, true);
+      str = str.substring(0, maxIndex)
+          + str.substring(maxIndex + 1, str.length)
+          + bigCh;
+  }
+
+  let keys = [...present.keys()];
+  keys.sort();
+  return keys[0];
 }
 
-// Example usage
-let inputString = "daily";
-let k = 1;
-console.log(findLexicographicallySmallestString(inputString, k));
+// Driver's code
+let str = "geeksforgeeks";
+let k = 2;
+
+// Function call
+console.log(smallestLexString(str, k));
