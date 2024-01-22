@@ -1,3 +1,5 @@
+// https://www.geeksforgeeks.org/lexicographically-smallest-string-by-repeatedly-moving-one-of-first-k-characters-to-end/
+
 function smallestLexString(str, k) {
   let present = new Map();
   let bigCh;
