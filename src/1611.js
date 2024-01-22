@@ -4,28 +4,28 @@ function smallestLexString(str, k) {
   let maxIndex = 0;
 
   if (k <= 0) {
-      return str;
-  } 
-  else if (k >= str.length) {
-      let strChars = str.split('');
-      strChars.sort();
-      return strChars.join('');
+    return str;
+  } else if (k >= str.length) {
+    let strChars = str.split("");
+    strChars.sort();
+    return strChars.join("");
   }
 
   while (!present.has(str)) {
-      bigCh = 'A';
+    bigCh = "A";
 
-      for (let i = 0; i < k; i++) {
-          if (bigCh < str.charAt(i)) {
-              maxIndex = i;
-              bigCh = str.charAt(i);
-          }
+    for (let i = 0; i < k; i++) {
+      if (bigCh < str.charAt(i)) {
+        maxIndex = i;
+        bigCh = str.charAt(i);
       }
+    }
 
-      present.set(str, true);
-      str = str.substring(0, maxIndex)
-          + str.substring(maxIndex + 1, str.length)
-          + bigCh;
+    present.set(str, true);
+    str =
+      str.substring(0, maxIndex) +
+      str.substring(maxIndex + 1, str.length) +
+      bigCh;
   }
 
   let keys = [...present.keys()];
