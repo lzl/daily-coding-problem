@@ -1,3 +1,5 @@
+// https://chat.openai.com/share/fd1a6e17-8950-4828-b90a-37f8d504bb87
+
 function countDecodings(message) {
   const n = message.length;
   if (n === 0 || (n === 1 && message[0] === "0")) return 0; // Edge case handling
