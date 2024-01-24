@@ -1,3 +1,5 @@
+// https://chat.openai.com/share/ec2b9c0f-8607-4c42-9700-854220c8ced4
+
 function rotateArray(arr, k) {
   // Ensure k is within the bounds of the array length
   k %= arr.length;
