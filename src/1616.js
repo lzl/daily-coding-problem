@@ -1,35 +1,20 @@
-function isPrime(num) {
-  for (let i = 2; i < num; i++) {
-    if (num % i === 0) {
-      return false;
+function findGoldbachPrimes(number) {
+  function isPrime(num) {
+    if (num <= 1) return false;
+    for (let i = 2; i * i <= num; i++) {
+      if (num % i === 0) return false;
     }
+    return true;
   }
-  return true;
-}
 
-function nextPrime(num) {
-  const next = num + 1;
-  if (isPrime(next)) {
-    return next;
-  }
-  return nextPrime(num);
-}
-
-function splitEvenNum(num) {
-  let left = 2;
-  let right = 0;
-
-  let loading = true;
-  while (loading) {
-    right = num - left;
-    if (isPrime(right)) {
-      break;
-    } else {
-      left = nextPrime(left);
+  for (let i = 2; i <= number / 2; i++) {
+    if (isPrime(i) && isPrime(number - i)) {
+      return [i, number - i];
     }
   }
 
-  return [left, right];
+  return null; // In theory, this should never happen as per Goldbach's conjecture
 }
 
-console.log(splitEvenNum(8));
+// Example usage
+console.log(findGoldbachPrimes(10)); // Output: [3, 7]
