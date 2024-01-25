@@ -1,3 +1,5 @@
+// https://chat.openai.com/share/fcd3a0c0-c9ad-454e-b32d-6defa7b591d7
+
 function findGoldbachPrimes(number) {
   function isPrime(num) {
     if (num <= 1) return false;
