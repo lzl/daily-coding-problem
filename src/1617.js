@@ -1,3 +1,5 @@
+// https://chat.openai.com/share/3d44a729-35f5-49de-9443-031823e16be8
+
 function simulateDominoes(dominoes) {
   let changed;
   do {
