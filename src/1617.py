@@ -1,3 +1,6 @@
+# https://chat.openai.com/share/64903395-d3a1-46c0-984b-42feb18d48e2
+
+
 def push_dominoes(dominoes):
     n = len(dominoes)
     forces = [0] * n  # To store the net force on each domino
