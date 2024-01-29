@@ -3,17 +3,22 @@ function findNthSevenishNumber(n) {
   let power = 0;
 
   while (n > 0) {
+    // Check if the least significant bit of n is 1
     if (n % 2 === 1) {
+      // Add the corresponding power of 7 to the sevenish number
       sevenishNumber += Math.pow(7, power);
     }
 
-    n = n >> 1;
-    power += 1;
+    // Move to the next bit (right shift in binary)
+    n = Math.floor(n / 2);
+
+    // Increase the power for the next iteration
+    power++;
   }
 
   return sevenishNumber;
 }
 
-for (let i = 0; i < 10; i++) {
-  console.log(findNthSevenishNumber(i));
-}
+// Example usage
+let n = 5;
+console.log("The " + n + "th sevenish number is: " + findNthSevenishNumber(n));
