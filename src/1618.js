@@ -1,3 +1,5 @@
+// https://chat.openai.com/share/d3366fd5-f518-4351-bf6b-43588338d9d8
+
 function findNthSevenishNumber(n) {
   let sevenishNumber = 0;
   let power = 0;
