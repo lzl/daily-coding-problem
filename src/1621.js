@@ -1,3 +1,5 @@
+// https://chat.openai.com/share/36e6db49-921c-4be7-b682-311832e83da2
+
 function findRegularNumbers(n) {
   if (n === 0) return [];
 
