@@ -1,38 +1,34 @@
-function longestSubstring(s, k) {
-  let subString = "";
+function longestSubstringWithKDistinctChars(s, k) {
+  if (k === 0 || s.length === 0) return "";
 
-  for (let i = 0; i < s.length; i++) {
-    const chars = [];
-    let j = 0;
-    let d = 0;
+  let left = 0,
+    maxLength = 0,
+    startOfMaxSubstr = 0;
+  const charFrequency = {};
 
-    while (true) {
-      const char = s[i + j];
-      if (!char) break;
+  for (let right = 0; right < s.length; right++) {
+    const rightChar = s[right];
+    charFrequency[rightChar] = (charFrequency[rightChar] || 0) + 1;
 
-      if (chars.includes(char)) {
-        chars.push(char);
-        j++;
-        d++;
-        continue;
+    while (Object.keys(charFrequency).length > k) {
+      const leftChar = s[left];
+      charFrequency[leftChar] -= 1;
+      if (charFrequency[leftChar] === 0) {
+        delete charFrequency[leftChar];
       }
-
-      if (chars.length >= k + d) {
-        j = 0;
-        d = 0;
-        break;
-      }
-
-      chars.push(char);
-      j++;
+      left += 1;
     }
 
-    if (subString.length < chars.length) {
-      subString = chars.join("");
+    if (right - left + 1 > maxLength) {
+      maxLength = right - left + 1;
+      startOfMaxSubstr = left;
     }
   }
 
-  return subString;
+  return s.substring(startOfMaxSubstr, startOfMaxSubstr + maxLength);
 }
 
-console.log("result:", longestSubstring("abcba", 2));
+// Example usage
+const s = "abcba";
+const k = 2;
+console.log(longestSubstringWithKDistinctChars(s, k)); // Output will be "bcb"
