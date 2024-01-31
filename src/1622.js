@@ -1,3 +1,5 @@
+// https://chat.openai.com/share/8e4085b3-fc87-4b6f-8637-17e1ad123b1a
+
 function longestSubstringWithKDistinctChars(s, k) {
   if (k === 0 || s.length === 0) return "";
 
