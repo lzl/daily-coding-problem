@@ -1,3 +1,5 @@
+// https://chat.openai.com/share/77b9016d-0606-4c74-b6dc-10577f3f2a49
+
 function areSentencesEquivalent(synonyms, sentence1, sentence2) {
   // Split sentences into words
   const words1 = sentence1.split(" ");
