@@ -49,3 +49,65 @@ const sentence2 = "He wants to consume food";
 
 console.log(areSentencesEquivalent(synonyms, sentence1, sentence2)); // Should output true
 
+class UnionFind {
+  constructor() {
+    this.parent = new Map();
+  }
+
+  find(word) {
+    if (!this.parent.has(word)) {
+      this.parent.set(word, word);
+    } else if (this.parent.get(word) !== word) {
+      this.parent.set(word, this.find(this.parent.get(word)));
+    }
+    return this.parent.get(word);
+  }
+
+  union(word1, word2) {
+    let parent1 = this.find(word1);
+    let parent2 = this.find(word2);
+    if (parent1 !== parent2) {
+      this.parent.set(parent1, parent2);
+    }
+  }
+}
+
+function areSentencesEquivalent2(synonyms, sentence1, sentence2) {
+  const words1 = sentence1.split(" ");
+  const words2 = sentence2.split(" ");
+
+  if (words1.length !== words2.length) {
+    return false;
+  }
+
+  const unionFind = new UnionFind();
+
+  // Group synonyms into equivalence classes
+  synonyms.forEach((pair) => {
+    unionFind.union(pair[0], pair[1]);
+  });
+
+  // Compare each word in the sentences
+  for (let i = 0; i < words1.length; i++) {
+    if (
+      words1[i] !== words2[i] &&
+      unionFind.find(words1[i]) !== unionFind.find(words2[i])
+    ) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+{
+  // Example usage
+  const synonyms = [
+    ["eat", "consume"],
+    ["consume", "ingest"],
+  ];
+  const sentence1 = "He wants to eat";
+  const sentence2 = "He wants to ingest";
+
+  console.log(areSentencesEquivalent2(synonyms, sentence1, sentence2)); // Should output true
+}
