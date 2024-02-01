@@ -101,13 +101,75 @@ function areSentencesEquivalent2(synonyms, sentence1, sentence2) {
 }
 
 {
-  // Example usage
-  const synonyms = [
-    ["eat", "consume"],
-    ["consume", "ingest"],
-  ];
-  const sentence1 = "He wants to eat";
-  const sentence2 = "He wants to ingest";
+  function runTestCases() {
+    const testCases = [
+      {
+        synonyms: [
+          ["big", "large"],
+          ["large", "huge"],
+        ],
+        sentence1: "He saw a big tree",
+        sentence2: "He saw a huge tree",
+        expected: true,
+      },
+      {
+        synonyms: [
+          ["happy", "joyful"],
+          ["sad", "unhappy"],
+        ],
+        sentence1: "She is happy today",
+        sentence2: "She is sad today",
+        expected: false,
+      },
+      {
+        synonyms: [],
+        sentence1: "It is raining",
+        sentence2: "It is sunny",
+        expected: false,
+      },
+      {
+        synonyms: [
+          ["start", "begin"],
+          ["begin", "commence"],
+          ["commence", "initiate"],
+        ],
+        sentence1: "Let's start the show",
+        sentence2: "Let's initiate the show",
+        expected: true,
+      },
+      {
+        synonyms: [["fast", "quick"]],
+        sentence1: "",
+        sentence2: "",
+        expected: true,
+      },
+      {
+        synonyms: [["fast", "quick"]],
+        sentence1: "fast",
+        sentence2: "quick",
+        expected: true,
+      },
+      {
+        synonyms: [["eat", "consume"]],
+        sentence1: "He wants to eat",
+        sentence2: "He wants to",
+        expected: false,
+      },
+    ];
 
-  console.log(areSentencesEquivalent2(synonyms, sentence1, sentence2)); // Should output true
+    testCases.forEach((test, index) => {
+      const result = areSentencesEquivalent2(
+        test.synonyms,
+        test.sentence1,
+        test.sentence2
+      );
+      console.log(
+        `Test Case ${index + 1}: ${
+          result === test.expected ? "Passed" : "Failed"
+        }`
+      );
+    });
+  }
+
+  runTestCases();
 }
