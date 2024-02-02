@@ -1,3 +1,5 @@
+// https://chat.openai.com/share/3fb42f0b-d7c9-4e52-a957-7f5324f3c811
+
 function stepsToKaprekarConstant(num) {
   if (typeof num !== "number") {
     throw new Error("a");
