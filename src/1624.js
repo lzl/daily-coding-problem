@@ -30,3 +30,21 @@ function stepsToKaprekarConstant(num) {
 }
 
 console.log(stepsToKaprekarConstant(1234));
+
+function kaprekarSteps(n) {
+  let steps = 0;
+  while (n !== 6174) {
+    // Convert number to array of digits, then sort ascending and descending
+    let digits = n.toString().split("");
+    let max = parseInt(digits.sort((a, b) => b - a).join(""), 10);
+    let min = parseInt(digits.sort((a, b) => a - b).join(""), 10);
+    // Subtract smaller number from larger and update n
+    n = max - min;
+    steps++;
+  }
+  return steps;
+}
+
+// Example to test the function
+let stepsTo6174 = kaprekarSteps(1234);
+console.log(stepsTo6174);
