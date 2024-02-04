@@ -1,34 +1,35 @@
-function Node(val) {
+function ListNode(val = 0, next = null) {
   this.val = val;
-  this.next = null;
+  this.next = next;
 }
 
-function sumNode(l1, l2) {
-  const result = new Node();
-
+function addTwoNumbers(l1, l2) {
+  let dummyHead = new ListNode(0);
+  let current = dummyHead;
   let carry = 0;
-  let list = result;
-  while (l1 || l2) {
-    let sum = (l1?.val ?? 0) + (l2?.val ?? 0) + carry;
-    if (sum >= 10) {
-      sum = sum - 10;
-      carry = 1;
-    } else {
-      carry = 0;
-    }
-    list.next = new Node(sum);
-    list = list.next;
-    l1 = l1?.next;
-    l2 = l2?.next;
+
+  while (l1 !== null || l2 !== null) {
+    let x = l1 != null ? l1.val : 0;
+    let y = l2 != null ? l2.val : 0;
+    let sum = carry + x + y;
+    carry = Math.floor(sum / 10);
+    current.next = new ListNode(sum % 10);
+    current = current.next;
+
+    if (l1 != null) l1 = l1.next;
+    if (l2 != null) l2 = l2.next;
   }
 
-  return result.next;
+  if (carry > 0) {
+    current.next = new ListNode(carry);
+  }
+
+  return dummyHead.next;
 }
 
-const l1 = new Node(9);
-l1.next = new Node(9);
-const l2 = new Node(5);
-l2.next = new Node(2);
-l2.next.next = new Node(1);
+const l1 = new ListNode(9);
+l1.next = new ListNode(9);
+const l2 = new ListNode(5);
+l2.next = new ListNode(2);
 
-console.log(sumNode(l1, l2));
+console.log(addTwoNumbers(l1, l2));
