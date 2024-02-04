@@ -1,3 +1,5 @@
+// https://chat.openai.com/share/b7ded180-de5c-47f9-9264-c3d985003004
+
 function ListNode(val = 0, next = null) {
   this.val = val;
   this.next = next;
