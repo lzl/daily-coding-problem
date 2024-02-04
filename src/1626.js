@@ -1,48 +1,34 @@
-function LinkedList(value) {
-  this.value = value;
+function Node(val) {
+  this.val = val;
   this.next = null;
 }
 
-const node = new LinkedList(1);
-node.next = new LinkedList(2);
-node.next.next = new LinkedList(3);
-node.next.next.next = new LinkedList(4);
-node.next.next.next.next = new LinkedList(5);
+function sumNode(l1, l2) {
+  const result = new Node();
 
-function fromListToArray(list) {
-  const arr = [];
-  let node = list;
-  while (node) {
-    arr.push(node.value);
-    node = node.next;
+  let carry = 0;
+  let list = result;
+  while (l1 || l2) {
+    let sum = (l1?.val ?? 0) + (l2?.val ?? 0) + carry;
+    if (sum >= 10) {
+      sum = sum - 10;
+      carry = 1;
+    } else {
+      carry = 0;
+    }
+    list.next = new Node(sum);
+    list = list.next;
+    l1 = l1?.next;
+    l2 = l2?.next;
   }
-  return arr;
+
+  return result.next;
 }
 
-function fromArrayToList(arr) {
-  const list = new LinkedList(arr[0]);
-  let node = list;
-  for (let i = 1; i < arr.length; i++) {
-    node.next = new LinkedList(arr[i]);
-    node = node.next;
-  }
-  return list;
-}
+const l1 = new Node(9);
+l1.next = new Node(9);
+const l2 = new Node(5);
+l2.next = new Node(2);
+l2.next.next = new Node(1);
 
-function sumList(l1, l2) {
-  const n1 = +fromListToArray(l1).reverse().join("");
-  const n2 = +fromListToArray(l2).reverse().join("");
-  const sum = n1 + n2;
-  return fromArrayToList(
-    `${sum}`
-      .split("")
-      .reverse()
-      .map((n) => +n)
-  );
-}
-
-const l1 = new LinkedList(9);
-l1.next = new LinkedList(9);
-const l2 = new LinkedList(5);
-l2.next = new LinkedList(2);
-console.log(sumList(l1, l2));
+console.log(sumNode(l1, l2));
