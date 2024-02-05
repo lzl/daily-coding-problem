@@ -1,22 +1,14 @@
-function debounce(fn, ms) {
-  let timeoutId;
-  let revoked = false;
+// https://www.joshwcomeau.com/snippets/javascript/debounce/
 
+const debounce = (callback, wait) => {
+  let timeoutId = null;
   return (...args) => {
-    if (!revoked) {
-      fn(...args);
-      revoked = true;
-    }
-
-    if (timeoutId && revoked) {
-      clearTimeout(timeoutId);
-    }
-
+    clearTimeout(timeoutId);
     timeoutId = setTimeout(() => {
-      fn(...args);
-    }, ms);
+      callback.apply(null, args);
+    }, wait);
   };
-}
+};
 
 function log(val) {
   console.log("log:", val);
