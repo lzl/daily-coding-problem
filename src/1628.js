@@ -1,20 +1,43 @@
-function rotateMatrix(matrix) {
-  const n = matrix.length;
-  const result = new Array(n).fill(null).map(() => new Array(n).fill(null));
+function rotateMatrix90DegreesClockwise(matrix) {
+  const N = matrix.length;
 
-  for (let i = 0; i < n; i++) {
-    for (let j = 0; j < n; j++) {
-      result[j][n - 1 - i] = matrix[i][j];
+  // Step 1: Transpose the matrix
+  for (let i = 0; i < N; i++) {
+    for (let j = i; j < N; j++) {
+      // Swap element at matrix[i][j] with element at matrix[j][i]
+      let temp = matrix[i][j];
+      matrix[i][j] = matrix[j][i];
+      matrix[j][i] = temp;
     }
   }
 
-  return result;
+  // Step 2: Reverse each row
+  for (let i = 0; i < N; i++) {
+    let low = 0,
+      high = N - 1;
+    while (low < high) {
+      var temp = matrix[i][low];
+      matrix[i][low] = matrix[i][high];
+      matrix[i][high] = temp;
+      low++;
+      high--;
+    }
+  }
+
+  return matrix;
 }
 
-console.log(
-  rotateMatrix([
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9],
-  ])
-);
+// Example usage
+const matrix = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+];
+
+console.log("Original matrix:");
+console.log(matrix);
+
+const rotatedMatrix = rotateMatrix90DegreesClockwise(matrix);
+
+console.log("Rotated matrix by 90 degrees clockwise:");
+console.log(rotatedMatrix);
